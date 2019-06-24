@@ -1,0 +1,180 @@
+.Wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.Header {
+  display: flex;
+  justify-content: center;
+}
+
+.Header h1 {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 6vh;
+}
+
+.Picture {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  border-radius: 30%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  height: 70%;
+}
+
+.Container {
+  display: grid;
+  margin-top: 15px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-rows: 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  grid-gap: 10px;
+}
+
+.button-plus {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  display: flex;
+  justify-content: center;
+}
+.button-plus button {
+  background-color: #74D7FF;
+  font-size: 8vw;
+  font-weight: 600;
+  color: white;
+  padding: 6px 24px;
+  border-radius: 18px;
+  text-align: center;
+  justify: center;
+  text-decoration: none;
+}
+
+.button-minus {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  display: flex;
+  justify-content: center;
+}
+
+.button-minus button{
+  background-color: #74D7FF;
+  font-size: 8vw;
+  font-weight: 600;
+  color: white;
+  padding: 8px 24px;
+  border-radius: 18px;
+  text-align: center;
+  justify: center;
+  text-decoration: none;
+}
+
+.timer-sign {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  display: flex;
+  justify-content: center;
+}
+
+.timer-sign button {
+  background-color: #E0DBFD;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 7vw;
+  font-weight: 600;
+  color: black;
+  padding: 6px 24px;
+  border: solid black;
+  border-radius: 10%;
+  text-align: center;
+  text-decoration: none;
+}
+
+.timer-div {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.timer {
+  font-family: Orbitron;
+  font-weight: bold;
+  color: #8A8EFF;
+  font-size: 16vw;
+  padding: 40px 20px 20px 20px;
+  border: solid #8A8EFF;
+  border-radius: 10px;
+}
+
+.start-button {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.start-button button {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 6vw;
+  font-weight: 600;
+  color: black;
+  padding: 6px 24px;
+  border-radius: 18px;
+  text-decoration: none;
+}
+
+.stop-button {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  display: flex;
+  justify-content: center;
+}
+
+.stop-button button {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 6vw;
+  font-weight: 600;
+  color: black;
+  padding: 6px 24px;
+  border-radius: 18px;
+  text-align: center;
+  text-decoration: none;
+}
+@media only screen and (min-width: 768px) {
+  .button-minus button {
+    background-color: #74D7FF;
+    font-size: 8vw;
+    font-weight: 600;
+    color: white;
+    padding: 6px 30px;
+    border-radius: 18px;
+    text-align: center;
+    justify: center;
+    text-decoration: none;
+  }
+}

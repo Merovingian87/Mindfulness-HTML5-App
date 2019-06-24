@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="meditation.css">
+    <script src="meditation-obj.js"></script>
+
+
+    <title>Mindfulness</title>
+  </head>
+
+  <body>
+
+    <div class="Wrapper">
+
+      <div class="Header">
+        <h1>Mindfulness</h1>
+      </div>
+
+      <div class="Picture">
+        <img src="img/balance-stones.jpg"/>
+      </div>
+
+      <div class="Container">
+
+        <div class="button-plus">
+          <button class="button-1" onclick="testTimer.upTimer()">+</button>
+          </div>
+
+        <div class="timer-sign">
+          <button class="button-2" onclick="testTimer.startTimer()">Start Session</button>
+        </div>
+
+        <div class="button-minus">
+          <button class="button-1" onclick="testTimer.downTimer()">-</button>
+        </div>
+
+        <div class="timer-div">
+
+          <div id="MyTimerDisplay" class ="timer">
+          </div>
+
+          <script type="text/javascript">
+            testTimer.showStartTime();
+          </script>
+        </div>
+
+    </div>
+
+  </div>
+  </body>
+</html>
