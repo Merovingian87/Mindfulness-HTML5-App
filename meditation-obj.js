@@ -80,9 +80,4 @@ function Timer() {
           hitIt();
         }
   }
-
-  // this.stopTimer = function() {
-  //   let timerId = setTimeout(() => this.startTimer(), 1000);
-  //   clearTimeout(timerId);
-  // }
 }
