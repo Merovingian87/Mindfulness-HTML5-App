@@ -26,11 +26,11 @@ function onMoreDuration() {
 }
 
 function onLessDuration() {
-    showStartTime();
   duration -= 120;
   if (duration < 0) {
     duration = 120;
   }
+  showStartTime();
 }
 
 function onStartPress() {
