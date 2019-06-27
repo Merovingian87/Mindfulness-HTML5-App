@@ -5,6 +5,8 @@ let hitIt = function() {
 
 let startTime;
 let duration = 600;
+let switch1 = false;
+console.log(switch1);
 
 showStartTime = function() {
   let startTime;
@@ -55,13 +57,18 @@ function every1Second() {
 
   if (minutes < 0) {
     clearTimeout(timerId);
-    // this.sec = 60;
-
     hitIt();
+    switch1 = false;
+    console.log(switch1);
   }
 }
 
-function run() {
-onStartPress();
-setTimeout(every1Second,1000);
+function turnOn() {
+  console.log("turned on, was previously " + switch1);
+
+  if (switch1 == false) {
+    switch1 = true;
+    onStartPress();
+    setTimeout(every1Second,1000);
+  }
 }
