@@ -43,7 +43,10 @@ function every1Second() {
   let timeLeft = duration - secondsPassed;
   let minutes = Math.floor(timeLeft / 60);
   let seconds = timeLeft - (minutes * 60);
-  let timer = minutes + ':' + seconds.toFixed(0)
+  let timer = minutes + ':' + seconds.toFixed(0);
+  if (minutes < 10) {
+    timer = "0" + minutes + ':' + seconds.toFixed(0);
+  }
   console.log(timer);
   document.getElementById("MyTimerDisplay").innerText = timer;
   document.getElementById("MyTimerDisplay").textContent = timer;
