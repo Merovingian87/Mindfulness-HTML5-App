@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="meditation.css">
-    <script src="meditation-obj-upgrade.js"></script>
+    <script src="meditation-new-logic.js"></script>
 
 
     <title>Mindfulness</title>
@@ -29,15 +29,15 @@
       <div class="Container">
 
         <div class="button-plus">
-          <button class="button-1" onclick="upTime()">+</button>
+          <button class="button-1" onclick="onMoreDuration()">+</button>
           </div>
 
         <div class="timer-sign">
-          <button class="button-2" onclick="testTimer.startSession()">Start Session</button>
+          <button class="button-2" onclick="run()">Start Session</button>
         </div>
 
         <div class="button-minus">
-          <button class="button-1" onclick="downTime()">-</button>
+          <button class="button-1" onclick="onLessDuration()">-</button>
         </div>
 
         <div class="timer-div">
@@ -46,7 +46,7 @@
           </div>
 
           <script type="text/javascript">
-
+          showStartTime();
           </script>
         </div>
 
