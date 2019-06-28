@@ -9,7 +9,7 @@ let hitIt = function() {
   song.play();
 };
 
-showStartTime = function() {
+function showStartTime() {
   let startTime;
   let min0 = duration / 60;
   let sec0 = "00";
