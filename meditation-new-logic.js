@@ -3,7 +3,7 @@
 let song = new Audio("calm-alarm.mp3");
 let startTime;
 let noSleep = new NoSleep();
-let duration = 1200;
+let duration1 = 1200;
 let switch1 = false;
 let hitIt = function() {
   song.play();
@@ -11,7 +11,7 @@ let hitIt = function() {
 
 function showStartTime() {
   let startTime2;
-  let min0 = duration / 60;
+  let min0 = duration1 / 60;
   let sec0 = "00";
 
     min0 = (min0 < 10) ? "0" + min0 : min0;
@@ -23,16 +23,16 @@ function showStartTime() {
 
 function upTime() {
   if (switch1 === false) {
-  duration += 300;
+  duration1 += 300;
   showStartTime();
   }
 }
 
 function downTime() {
   if (switch1 === false) {
-  duration -= 300;
-    if (duration <= 0) {
-      duration = 300;
+  duration1 -= 300;
+    if (duration1 <= 0) {
+      duration1 = 300;
     }
   showStartTime();
   }
@@ -45,7 +45,7 @@ function onStartPress() {
 function every1Second() {
   let now = Date.now();
   let secondsPassed = (now - startTime) / 1000;
-  let timeLeft = duration - secondsPassed;
+  let timeLeft = duration1 - secondsPassed;
   let minutes = Math.floor(timeLeft / 60);
   let seconds = timeLeft - (minutes * 60);
   let timer;
