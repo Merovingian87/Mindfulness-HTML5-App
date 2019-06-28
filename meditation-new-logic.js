@@ -2,7 +2,6 @@
 
 let song = new Audio("calm-alarm.mp3");
 let startTime;
-let noSleep = new NoSleep();
 let duration1 = 1200;
 let switch1 = false;
 let hitIt = function() {
@@ -74,6 +73,7 @@ function every1Second() {
 }
 
 function turnOn() {
+  let noSleep = new NoSleep();
   if (switch1 === false) {
     switch1 = true;
     onStartPress();
