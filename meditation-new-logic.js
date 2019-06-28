@@ -68,6 +68,7 @@ function every1Second() {
     showStartTime();
     hitIt();
     switch1 = false;
+    noSleep.disable();
   }
 }
 
@@ -76,5 +77,11 @@ function turnOn() {
     switch1 = true;
     onStartPress();
     setTimeout(every1Second,1000);
-  }
+
+    // Enable noSleep.js
+    document.addEventListener('click', function enableNoSleep() {
+      document.removeEventListener('click', enableNoSleep, false);
+      noSleep.enable();
+      }, false);
+        }
 }
