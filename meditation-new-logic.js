@@ -10,15 +10,15 @@ let hitIt = function() {
 };
 
 function showStartTime() {
-  let startTime;
+  let startTime2;
   let min0 = duration / 60;
   let sec0 = "00";
 
     min0 = (min0 < 10) ? "0" + min0 : min0;
-    startTime = min0 + " : " + sec0;
+    startTime2 = min0 + " : " + sec0;
 
-  document.getElementById("MyTimerDisplay").innerText = startTime;
-  document.getElementById("MyTimerDisplay").textContent = startTime;
+  document.getElementById("MyTimerDisplay").innerText = startTime2;
+  document.getElementById("MyTimerDisplay").textContent = startTime2;
 }
 
 function upTime() {
