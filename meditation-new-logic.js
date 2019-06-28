@@ -50,9 +50,9 @@ function every1Second() {
   let timer;
       if (minutes < 10 && seconds < 10) {
           timer = "0" + minutes + " : " + "0" + seconds.toFixed(0);
-        } else if (minutes > 9 && seconds.toFixed(0) < 10) {
+        } else if (minutes > 9 && seconds < 10) {
           timer = minutes + " : " + "0" + seconds.toFixed(0);
-        } else if (minutes < 10 && seconds.toFixed(0) > 9){
+        } else if (minutes < 10 && seconds > 9){
           timer = "0" + minutes + " : " + seconds.toFixed(0);
           } else {
           timer = minutes + " : " + seconds.toFixed(0);
