@@ -1,12 +1,10 @@
 let song = new Audio("calm-alarm.mp3");
+let startTime;
+let duration = 1200;
+let switch1 = false;
 let hitIt = function() {
   song.play();
 };
-
-let startTime;
-let duration = 600;
-let switch1 = false;
-console.log(switch1);
 
 showStartTime = function() {
   let startTime;
@@ -22,17 +20,21 @@ showStartTime = function() {
   document.getElementById("MyTimerDisplay").textContent = startTime;
 }
 
-function onMoreDuration() {
-  duration += 120;
+function upTime() {
+  if (switch1 === false) {
+  duration += 300;
   showStartTime();
+  }
 }
 
-function onLessDuration() {
-  duration -= 120;
-  if (duration < 0) {
-    duration = 120;
-  }
+function downTime() {
+  if (switch1 === false) {
+  duration -= 300;
+    if (duration <= 0) {
+      duration = 300;
+    }
   showStartTime();
+  }
 }
 
 function onStartPress() {
@@ -45,11 +47,17 @@ function every1Second() {
   let timeLeft = duration - secondsPassed;
   let minutes = Math.floor(timeLeft / 60);
   let seconds = timeLeft - (minutes * 60);
-  let timer = minutes + ':' + seconds.toFixed(0);
-  if (minutes < 10) {
-    timer = "0" + minutes + ':' + seconds.toFixed(0);
-  }
-  console.log(timer);
+  let timer;
+      if (minutes < 10 && seconds < 10) {
+          timer = "0" + minutes + " : " + "0" + seconds.toFixed(0);
+        } else if (minutes > 9 && seconds.toFixed(0) < 10) {
+          timer = minutes + " : " + "0" + seconds.toFixed(0);
+        } else if (minutes < 10 && seconds.toFixed(0) > 9){
+          timer = "0" + minutes + " : " + seconds.toFixed(0);
+          } else {
+          timer = minutes + " : " + seconds.toFixed(0);
+          };
+
   document.getElementById("MyTimerDisplay").innerText = timer;
   document.getElementById("MyTimerDisplay").textContent = timer;
 
@@ -57,16 +65,14 @@ function every1Second() {
 
   if (minutes < 0) {
     clearTimeout(timerId);
+    showStartTime();
     hitIt();
     switch1 = false;
-    console.log(switch1);
   }
 }
 
 function turnOn() {
-  console.log("turned on, was previously " + switch1);
-
-  if (switch1 == false) {
+  if (switch1 === false) {
     switch1 = true;
     onStartPress();
     setTimeout(every1Second,1000);
