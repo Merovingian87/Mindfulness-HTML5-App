@@ -2,7 +2,7 @@
 
 let song = new Audio("calm-alarm.mp3");
 let startTime;
-let duration1 = 120;
+let duration1 = 1200;
 let switch1 = false;
 let hitIt = function() {
   song.play();
@@ -46,16 +46,16 @@ function every1Second() {
   let secondsPassed = (now - startTime) / 1000;
   let timeLeft = duration1 - secondsPassed;
   let minutes = Math.floor(timeLeft / 60);
-  let seconds = timeLeft - (minutes * 60);
+  let seconds = Math.floor(timeLeft - (minutes * 60));
   let timer;
-      if (minutes < 10 && Math.floor(seconds) < 10) {
-          timer = "0" + minutes + " : " + "0" + Math.floor(seconds);
-        } else if (minutes > 9 && Math.floor(seconds) < 10) {
-          timer = minutes + " : " + "0" + Math.floor(seconds);
-        } else if (minutes < 10 && Math.floor(seconds) > 9){
-          timer = "0" + minutes + " : " + Math.floor(seconds);
+      if (minutes < 10 && seconds < 10) {
+          timer = "0" + minutes + " : " + "0" + seconds;
+        } else if (minutes > 9 && seconds < 10) {
+          timer = minutes + " : " + "0" + seconds;
+        } else if (minutes < 10 && seconds > 9){
+          timer = "0" + minutes + " : " + seconds;
           } else {
-          timer = minutes + " : " + Math.floor(seconds);
+          timer = minutes + " : " + seconds;
           };
 
   document.getElementById("MyTimerDisplay").innerText = timer;
