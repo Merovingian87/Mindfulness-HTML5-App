@@ -48,14 +48,14 @@ function every1Second() {
   let minutes = Math.floor(timeLeft / 60);
   let seconds = timeLeft - (minutes * 60);
   let timer;
-      if (minutes < 10 && seconds < 10) {
-          timer = "0" + minutes + " : " + "0" + seconds.toFixed(0);
-        } else if (minutes > 9 && seconds < 10) {
-          timer = minutes + " : " + "0" + seconds.toFixed(0);
-        } else if (minutes < 10 && seconds > 9){
-          timer = "0" + minutes + " : " + seconds.toFixed(0);
+      if (minutes < 10 && Math.floor(seconds) < 10) {
+          timer = "0" + minutes + " : " + "0" + Math.floor(seconds);
+        } else if (minutes > 9 && Math.floor(seconds) < 10) {
+          timer = minutes + " : " + "0" + Math.floor(seconds);
+        } else if (minutes < 10 && Math.floor(seconds) > 9){
+          timer = "0" + minutes + " : " + Math.floor(seconds);
           } else {
-          timer = minutes + " : " + seconds.toFixed(0);
+          timer = minutes + " : " + Math.floor(seconds);
           };
 
   document.getElementById("MyTimerDisplay").innerText = timer;
