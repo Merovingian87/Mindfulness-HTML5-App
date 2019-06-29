@@ -2,7 +2,7 @@
 
 let song = new Audio("calm-alarm.mp3");
 let startTime;
-let duration1 = 1200;
+let duration1 = 120;
 let switch1 = false;
 let hitIt = function() {
   song.play();
