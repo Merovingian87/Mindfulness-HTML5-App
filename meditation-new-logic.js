@@ -83,7 +83,7 @@ function turnOn() {
   if (switch1 === false) {
     switch1 = true;
     onStartPress();
-    setTimeout(every1Second,1000);
+    setTimeout(every1Second,10);
 
     // Enable noSleep.js
     document.addEventListener('click', function enableNoSleep() {
