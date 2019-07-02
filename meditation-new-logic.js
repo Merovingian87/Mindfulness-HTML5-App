@@ -51,7 +51,7 @@ function every1Second() {
 
       timer = (minutes < 10 && seconds < 10) ? "0" + minutes + " : " + "0" + seconds :
       (minutes > 9 && seconds < 10) ? minutes + " : " + "0" + seconds :
-      (minutes < 10 && seconds > 9) ? minutes + " : " + "0" + seconds :
+      (minutes < 10 && seconds > 9) ? "0" + minutes + " : " + seconds :
       minutes + " : " + seconds;
 
       // if (minutes < 10 && seconds < 10) {
