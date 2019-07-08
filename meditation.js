@@ -1,98 +1,145 @@
-"use strict"
-
 let song = new Audio("calm-alarm.mp3");
-let startTime;
-let duration1 = 1200;
-let switch1 = false;
-let hitIt = function() {
+function play() {
   song.play();
+}
+let min
+
+
+let mindTimer = {
+  duration: 1200,
+  buttonPressedOnce: false,
+  timerFinished: false,
+  startTime: undefined,
+  now: undefined,
+  timer: undefined,
+  stateSwitch: false,
+  minutes: [min, min, min, min, min, min, min, min, min, min, min, min, min, min, min, min, min, min, min, min,],
+  hitIt: function() {
+    if (this.stateSwitch === true) {
+      song.loop = true;
+      play();
+    };
+  },
+  upTime: function() {
+    this.duration += 300;
+    for (let i = 1; i < 6; i++) {
+      this.minutes.push(min);
+    }
+  },
+  downTime: function() {
+    this.duration -= 300;
+      if (this.duration < 60) {
+        this.duration = 60;
+      }
+      for (let i = 1; i < 6; i++) {
+        this.minutes.pop(min);
+      }
+  },
+  onStartPress: function() {
+    this.startTime = Date.now();
+  },
+  runTimer: function() {
+    this.now = Date.now();
+    let secondsPassed = (this.now - this.startTime) / 1000;
+    let timeLeft = this.duration - secondsPassed;
+    let minutes = Math.floor(timeLeft / 60);
+    let seconds = Math.floor(timeLeft - (minutes * 60));
+
+    if (minutes < 10 && seconds < 10) {
+        this.timer = "0" + minutes + " : " + "0" + seconds;
+      } else if (minutes > 9 && seconds < 10) {
+        this.timer = minutes + " : " + "0" + seconds;
+      } else if (minutes < 10 && seconds > 9){
+        this.timer = "0" + minutes + " : " + seconds;
+        } else {
+        this.timer = minutes + " : " + seconds;
+        };
+
+    document.getElementById("MyTimerDisplay").innerText = this.timer;
+    document.getElementById("MyTimerDisplay").textContent = this.timer;
+
+    let timerId = setTimeout(() => this.runTimer(), 250);
+
+    if (minutes < 0) {
+      clearTimeout(timerId);
+      this.duration = (this.minutes.length * 60);
+      handler.showStart();
+      this.hitIt();
+      this.displayFinish();
+      this.stateSwitch = false;
+      this.timerFinished = true;
+
+    } else if (this.stateSwitch === false) {
+      clearTimeout(timerId);
+      document.getElementById("MyTimerDisplay").textContent = this.timer;
+      this.duration = Math.floor(timeLeft);
+    }
+  },
+  displayFinish: function() {
+      let div = document.getElementById("finish-button");
+      div.style.display = "flex";
+  }
 };
 
-function showStartTime() {
-  let startTime2;
-  let min0 = duration1 / 60;
-  let sec0 = "00";
-
-    min0 = (min0 < 10) ? "0" + min0 : min0;
-    startTime2 = min0 + " : " + sec0;
-
-  document.getElementById("MyTimerDisplay").innerText = startTime2;
-  document.getElementById("MyTimerDisplay").textContent = startTime2;
-}
-
-function upTime() {
-  if (switch1 === false) {
-  duration1 += 300;
-  showStartTime();
-  }
-}
-
-function downTime() {
-  if (switch1 === false) {
-  duration1 -= 300;
-    if (duration1 <= 0) {
-      duration1 = 300;
+let handler = {
+  showStart: function() {
+    let startTimeValue;
+    let min = mindTimer.duration / 60;
+    let sec = "00";
+      min = (min < 10) ? "0" + min : min;
+      startTimeValue = min + " : " + sec;
+    document.getElementById("MyTimerDisplay").innerText = startTimeValue;
+  },
+  upTime: function() {
+    if (mindTimer.stateSwitch === false && mindTimer.buttonPressedOnce === false) {
+      mindTimer.upTime();
+      this.showStart();
     }
-  showStartTime();
+  },
+  downTime: function() {
+    if (mindTimer.stateSwitch === false && mindTimer.buttonPressedOnce === false) {
+      mindTimer.downTime();
+      this.showStart();
+    }
+  },
+  toggleTimer: function() {
+    let noSleep = new NoSleep();
+    mindTimer.buttonPressedOnce = true;
+
+    if (mindTimer.timerFinished === false) {
+    // Run Timer
+        if (mindTimer.stateSwitch === false) {
+          mindTimer.stateSwitch = true;
+          mindTimer.onStartPress();
+          mindTimer.runTimer();
+          // let noSleep = new NoSleep();
+          noSleep.enable();
+          console.log("Enable NoSleep " + noSleep);
+        // Pause Timer
+        } else { // If stateSwitch === true
+          mindTimer.stateSwitch = false;
+          noSleep.disable();
+          noSleep = null;
+          console.log("Disable NoSleep " + noSleep);
+        }
+    } else {
+      noSleep.disable();
+      noSleep = null;
+      console.log("Disable NoSleep " + noSleep);
+    }
+  },
+  finishSession: function() {
+    song.pause();
+    this.toggleTimer();
+    let div = document.getElementById("finish-button");
+    div.style.display = "none";
+    mindTimer.buttonPressedOnce = false;
+    mindTimer.timerFinished = false;
   }
-}
+};
 
-function onStartPress() {
-    startTime = Date.now();
-}
 
-function every1Second() {
-  let now = Date.now();
-  let secondsPassed = (now - startTime) / 1000;
-  let timeLeft = duration1 - secondsPassed;
-  let minutes = Math.floor(timeLeft / 60);
-  let seconds = Math.floor(timeLeft - (minutes * 60));
-  let timer;
 
-      timer = (minutes < 10 && seconds < 10) ? "0" + minutes + " : " + "0" + seconds :
-      (minutes > 9 && seconds < 10) ? minutes + " : " + "0" + seconds :
-      (minutes < 10 && seconds > 9) ? "0" + minutes + " : " + seconds :
-      minutes + " : " + seconds;
-
-      // if (minutes < 10 && seconds < 10) {
-      //     timer = "0" + minutes + " : " + "0" + seconds;
-      //   } else if (minutes > 9 && seconds < 10) {
-      //     timer = minutes + " : " + "0" + seconds;
-      //   } else if (minutes < 10 && seconds > 9){
-      //     timer = "0" + minutes + " : " + seconds;
-      //     } else {
-      //     timer = minutes + " : " + seconds;
-      //     };
-
-  document.getElementById("MyTimerDisplay").innerText = timer;
-  document.getElementById("MyTimerDisplay").textContent = timer;
-
-  let timerId = setTimeout(() => every1Second(), 1000);
-
-  if (minutes < 0) {
-    clearTimeout(timerId);
-    showStartTime();
-    hitIt();
-    switch1 = false;
-    noSleep.disable();
-  }
-}
-
-function turnOn() {
-  let noSleep = new NoSleep();
-  if (switch1 === false) {
-    switch1 = true;
-    onStartPress();
-    setTimeout(every1Second,10);
-
-    // Enable noSleep.js
-    document.addEventListener('click', function enableNoSleep() {
-      document.removeEventListener('click', enableNoSleep, false);
-      noSleep.enable();
-      }, false);
-      console
-  }
-}
 
 
 /*! NoSleep.js v0.9.0 - git.io/vfn01 - Rich Tibbett - MIT license */

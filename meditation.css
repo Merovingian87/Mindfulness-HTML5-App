@@ -28,8 +28,8 @@ img {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 60%;
-  height: 60%;
+  width: 65%;
+  height: 65%;
 }
 
 .Container {
@@ -122,9 +122,28 @@ img {
   font-weight: bold;
   color: #8A8EFF;
   font-size: 15vw;
-  padding: 20px;
+  padding: 15px 10px 10px 10px;
   border: solid #8A8EFF;
   border-radius: 10px;
+}
+
+.finish-session {
+  margin-top: 3vh;
+  display: none;
+  justify-content: center;
+}
+
+.finish-session button {
+  background-color: #FDE2BB;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 5vw;
+  font-weight: 600;
+  color: black;
+  padding: 10px 50px;
+  border: solid black;
+  border-radius: 5%;
+  text-align: center;
+  text-decoration: none;
 }
 
 @media only screen and (min-width: 768px) {

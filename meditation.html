@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="meditation.css">
-    <script src="meditation-new-logic.js"></script>
+    <script src="meditation.js"></script>
 
     <title>Mindfulness</title>
     <link rel="shortcut icon" type="image/png" href="img/android-icon-96x96.png">
@@ -31,27 +31,28 @@
       <div class="Container">
 
         <div class="button-plus">
-          <button class="button-1" onclick="upTime()">+</button>
+          <button class="button-1" onclick="handler.upTime()">+</button>
           </div>
 
         <div class="timer-sign">
-          <button class="button-2" onclick="turnOn()">Start Session</button>
+          <button class="button-2" onclick="handler.toggleTimer()">Start/Pause Session</button>
         </div>
 
         <div class="button-minus">
-          <button class="button-1" onclick="downTime()">-</button>
+          <button class="button-1" onclick="handler.downTime()">-</button>
         </div>
 
         <div class="timer-div">
-
           <div id="MyTimerDisplay" class ="timer">
           </div>
-
           <script type="text/javascript">
-          showStartTime();
+          handler.showStart();
           </script>
         </div>
+    </div>
 
+    <div id="finish-button" class="finish-session">
+      <button class="button-2" onclick="handler.finishSession()">Finish Session</button>
     </div>
 
   </div>
