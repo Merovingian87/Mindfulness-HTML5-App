@@ -2,15 +2,17 @@ let song = new Audio("calm-alarm.mp3");
 function play() {
   song.play();
 }
+let min;
 
 let mindTimer = {
   duration: 1200,
-  minutesPassed: 0,
   buttonPressedOnce: false,
+  timerFinished: false,
   startTime: undefined,
   now: undefined,
   timer: undefined,
   stateSwitch: false,
+  minutes: [min, min],
   hitIt: function() {
     if (this.stateSwitch === true) {
       song.loop = true;
@@ -19,11 +21,17 @@ let mindTimer = {
   },
   upTime: function() {
     this.duration += 300;
+    for (let i = 1; i < 6; i++) {
+      this.minutes.push(min);
+    }
   },
   downTime: function() {
     this.duration -= 300;
-      if (this.duration < 300) {
-        this.duration = 300;
+      if (this.duration < 60) {
+        this.duration = 60;
+      }
+      for (let i = 1; i < 6; i++) {
+        this.minutes.pop(min);
       }
   },
   onStartPress: function() {
@@ -53,29 +61,24 @@ let mindTimer = {
 
     if (minutes < 0) {
       clearTimeout(timerId);
+      this.duration = (this.minutes.length * 60);
       handler.showStart();
       this.hitIt();
       this.displayFinish();
-      console.log(this.stateSwitch);
+      this.stateSwitch = false;
+      this.timerFinished = true;
+
     } else if (this.stateSwitch === false) {
       clearTimeout(timerId);
       document.getElementById("MyTimerDisplay").textContent = this.timer;
       this.duration = Math.floor(timeLeft);
     }
   },
-
-
   displayFinish: function() {
-      let finishDiv = document.getElementById("finish-button");
-      let finishBu = document.createElement("Button");
-      finishBu.innerHTML = "Finish Session";
-      let att = document.createAttribute("onclick");
-      // att.value = handler.stop();
-      // finishBu.setAttributeNode(att);
-      finishDiv.appendChild(finishBu);
-    },
+      let div = document.getElementById("finish-button");
+      div.style.display = "flex";
+  }
 };
-console.log("Pressed once: ", mindTimer.buttonPressedOnce);
 
 let handler = {
   showStart: function() {
@@ -99,30 +102,42 @@ let handler = {
       this.showStart();
     }
   },
-  turnOn: function() {
+  toggleTimer: function() {
     let noSleep = new NoSleep();
     mindTimer.buttonPressedOnce = true;
 
+    if (mindTimer.timerFinished === false) {
     // Run Timer
-    if (mindTimer.stateSwitch === false) {
-      mindTimer.stateSwitch = true;
-      mindTimer.onStartPress();
-      mindTimer.runTimer();
-      // let noSleep = new NoSleep();
-      noSleep.enable();
-      console.log("Enable NoSleep " + noSleep);
-
-    // Pause Timer
-  } else { // If stateSwitch === true
-      mindTimer.stateSwitch = false;
+        if (mindTimer.stateSwitch === false) {
+          mindTimer.stateSwitch = true;
+          mindTimer.onStartPress();
+          mindTimer.runTimer();
+          // let noSleep = new NoSleep();
+          noSleep.enable();
+          console.log("Enable NoSleep " + noSleep);
+        // Pause Timer
+        } else { // If stateSwitch === true
+          mindTimer.stateSwitch = false;
+          noSleep.disable();
+          noSleep = null;
+          console.log("Disable NoSleep " + noSleep);
+        }
+    } else {
       noSleep.disable();
       noSleep = null;
-      console.log("Enable NoSleep " + noSleep);
+      console.log("Disable NoSleep " + noSleep);
     }
-
-    console.log("Once: ",mindTimer.buttonPressedOnce);
   },
+  finishSession: function() {
+    song.pause();
+    this.toggleTimer();
+    let div = document.getElementById("finish-button");
+    div.style.display = "none";
+    mindTimer.buttonPressedOnce = false;
+    mindTimer.timerFinished = false;
+  }
 };
+
 
 
 
