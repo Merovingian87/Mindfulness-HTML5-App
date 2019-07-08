@@ -2,7 +2,8 @@ let song = new Audio("calm-alarm.mp3");
 function play() {
   song.play();
 }
-let min;
+let min
+
 
 let mindTimer = {
   duration: 1200,
@@ -12,7 +13,7 @@ let mindTimer = {
   now: undefined,
   timer: undefined,
   stateSwitch: false,
-  minutes: [min, min],
+  minutes: [min, min, min, min, min, min, min, min, min, min, min, min, min, min, min, min, min, min, min, min,],
   hitIt: function() {
     if (this.stateSwitch === true) {
       song.loop = true;
@@ -87,8 +88,7 @@ let handler = {
     let sec = "00";
       min = (min < 10) ? "0" + min : min;
       startTimeValue = min + " : " + sec;
-
-      document.getElementById("MyTimerDisplay").innerText = startTimeValue;
+    document.getElementById("MyTimerDisplay").innerText = startTimeValue;
   },
   upTime: function() {
     if (mindTimer.stateSwitch === false && mindTimer.buttonPressedOnce === false) {
