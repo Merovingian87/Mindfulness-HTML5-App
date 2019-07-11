@@ -6,7 +6,7 @@ let min
 
 
 let mindTimer = {
-  duration: 1200,
+  duration: 60,
   buttonPressedOnce: false,
   timerFinished: false,
   startTime: undefined,
@@ -28,8 +28,8 @@ let mindTimer = {
   },
   downTime: function() {
     this.duration -= 300;
-      if (this.duration < 60) {
-        this.duration = 60;
+      if (this.duration < 300) {
+        this.duration = 300;
       }
       for (let i = 1; i < 6; i++) {
         this.minutes.pop(min);
@@ -60,6 +60,16 @@ let mindTimer = {
 
     let timerId = setTimeout(() => this.runTimer(), 250);
 
+    let statusDiv = document.getElementById("status-div");
+    statusDiv.style.display = "flex";
+    let status = document.getElementById("ss-status");
+    let message = document.getElementById("ss-message");
+    let messageStr = "ScreenSaver-Blocker:   ";
+    message.innerText = messageStr;
+    status.style.color = "#80E884";
+    status.textContent = " On";
+
+
     if (minutes < 0) {
       clearTimeout(timerId);
       this.duration = (this.minutes.length * 60);
@@ -73,11 +83,17 @@ let mindTimer = {
       clearTimeout(timerId);
       document.getElementById("MyTimerDisplay").textContent = this.timer;
       this.duration = Math.floor(timeLeft);
+      status.textContent = " Off";
+      status.style.color = "#FF5851";
     }
   },
   displayFinish: function() {
       let div = document.getElementById("finish-button");
       div.style.display = "flex";
+      let status = document.getElementById("ss-status");
+      status.innerText = "";
+      let message = document.getElementById("ss-message");
+      message.innerText = "Well done! Please finish session";
   }
 };
 
@@ -129,12 +145,15 @@ let handler = {
     }
   },
   finishSession: function() {
+    let statusDiv = document.getElementById("status-div");
     song.pause();
     this.toggleTimer();
     let div = document.getElementById("finish-button");
     div.style.display = "none";
+    statusDiv.style.display = "none;"
     mindTimer.buttonPressedOnce = false;
     mindTimer.timerFinished = false;
+    statusDiv.style.display = "none";
   }
 };
 

@@ -128,7 +128,7 @@ img {
 }
 
 .finish-session {
-  margin-top: 3vh;
+  margin-top: 2vh;
   display: none;
   justify-content: center;
 }
@@ -136,14 +136,33 @@ img {
 .finish-session button {
   background-color: #FDE2BB;
   font-family: 'Source Sans Pro', sans-serif;
-  font-size: 5vw;
-  font-weight: 600;
+  font-size: 8vw;
+  font-weight: 800;
   color: black;
-  padding: 10px 50px;
+  padding: 20px 60px;
   border: solid black;
   border-radius: 5%;
   text-align: center;
   text-decoration: none;
+}
+
+.ss {
+  margin-top: 1vh;
+  display: flex;
+  justify-content: center;
+}
+
+.ss p {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 400;
+  font-size: 3vh;
+  border-bottom: solid 1px black;
+}
+
+#ss-status {
+  padding-left: 2vw;
+  font-weight: 700;
+  color: #80E884;
 }
 
 @media only screen and (min-width: 768px) {
